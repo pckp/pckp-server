@@ -1,4 +1,4 @@
 #[get("/")]
-pub fn route() -> &'static str {
+pub async fn route() -> &'static str {
     "Hello, pckp!"
 }
