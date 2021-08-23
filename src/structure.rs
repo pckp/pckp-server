@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use postgres::Client;
 use rocket_sync_db_pools::database;
 use serde::{Serialize, Deserialize};
@@ -7,35 +5,22 @@ use serde::{Serialize, Deserialize};
 #[database("krista")]
 pub struct PckpDbClient(Client);
 
-#[derive(Debug, FromForm, Deserialize, Serialize)]
-pub struct PackageMetaRow {
-    pub package_id: i32,
-    pub package_name: String,
-    pub package_desc: String,
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Package {
+    pub id: i32,
+    pub author_id: i32,
+    pub name: String,
+    pub repo_name: String,
     pub homepage: String,
-    pub added_at: i64,
+    pub added_timestamp: i64,
+    pub downloads: i32,
 }
 
-#[derive(Debug, FromForm, Deserialize, Serialize)]
-pub struct PackageMetadata {
-    pub package_name: String,
-    pub package_desc: String,
-    pub homepage: String,
-    pub added_at: i64,
-}
-
-#[derive(Debug, FromForm, Deserialize, Serialize)]
-pub struct UserRow {
-    pub user_id: i32,
-    pub user_name: String,
-    pub user_profile_img: String,
-    pub verified: bool,
-    pub github_url: String,
-}
-
-#[derive(Debug, FromForm, Deserialize, Serialize)]
-pub struct NewPackage {
-    pub meta: PackageMetadata,
-    pub owner: UserRow,
-    pub file_tree: HashMap<String, String>
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Author {
+    id: i32,
+    name: String,
+    github_user: String,
+    verified: bool,
+    profile_image: String,
 }
