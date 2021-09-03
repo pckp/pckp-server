@@ -12,5 +12,5 @@ use structure::*;
 async fn rocket() -> _ {
     build()
         .attach(PckpDbClient::fairing())
-        .mount("/", routes![api::get_new_package, api::get_package, api::post_new_package])
+        .mount("/", routes![api::get_new_package, api::get_package, api::post_new_package, api::search_packages])
 }
