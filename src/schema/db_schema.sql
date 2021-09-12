@@ -7,7 +7,7 @@ CREATE TABLE pckp.package (
     repo_name VARCHAR(255),
     homepage VARCHAR(255),
     added_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    downloads INT4 DEFAULT 0,
+    downloads INT4 DEFAULT 0
 );
 
 CREATE TABLE pckp.author (
